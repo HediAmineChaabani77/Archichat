@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARCHichat - Invoice Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+    </svg>
+</head>
+<body>
+    <!-- Background Image -->
+    <div class="bg-image" id="bgImage"></div>
+
+    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <img src="{{ url_for('get_logo_image') }}" alt="ARCHichat Logo" id="logoImg" onerror="this.style.display='none'">
+                    </div>
+                    <div class="logo-text">
+                        <h1>ARCHichat</h1>
+                        <p class="tagline">AI-Powered Invoice Assistant</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Chat Container -->
+        <div class="chat-container" id="chatContainer">
+            <!-- Welcome Message -->
+            <div class="message bot-message fade-in">
+                <div class="message-avatar bot-avatar">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" fill="url(#grad1)"/>
+                        <path d="M8 14s1.5 2 4 2 4-2 4-2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="9" cy="9" r="1.5" fill="white"/>
+                        <circle cx="15" cy="9" r="1.5" fill="white"/>
+                    </svg>
+                </div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <strong>🤖 ARCHichat</strong>
+                        <span class="timestamp">now</span>
+                    </div>
+                    <p>Bonjour ! En tant qu'ARCHichat, je suis là pour vous aider avec toutes vos questions sur les factures. N'hésitez pas à me poser votre question sur :</p>
+                    <div class="info-box">
+                        <p><strong>Les montants</strong> (total, TVA, hors taxes)</p>
+                        <p><strong>Les informations de l'entreprise</strong> (nom, adresse, SIRET)</p>
+                        <p><strong>Les détails des articles</strong></p>
+                        <p><strong>La date ou le numéro de la facture</strong></p>
+                        <p style="margin-top: 12px;">Si vous avez du mal à localiser l'information sur la facture, je peux également vous montrer l'<strong>image de placement</strong> pour vous aider à la trouver.</p>
+                        <p class="highlight-text" style="margin-top: 12px;">✨ Quelle est votre question ?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="input-area">
+            <form id="chatForm">
+                <div class="input-wrapper">
+                    <input 
+                        type="text" 
+                        id="messageInput" 
+                        placeholder="Posez votre question sur une facture..." 
+                        autocomplete="off"
+                    >
+                </div>
+                <button type="submit" class="send-btn" id="sendBtn" title="Envoyer">
+                    <svg class="send-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                    </svg>
+                    <svg class="loading-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                    </svg>
+                    <span class="btn-ripple"></span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner-container">
+            <div class="spinner">
+                <div class="spinner-blade"></div>
+                <div class="spinner-blade"></div>
+                <div class="spinner-blade"></div>
+                <div class="spinner-blade"></div>
+                <div class="spinner-blade"></div>
+                <div class="spinner-blade"></div>
+                <div class="spinner-blade"></div>
+                <div class="spinner-blade"></div>
+            </div>
+            <p class="loading-text">Traitement en cours...</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
